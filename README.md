@@ -1,1 +1,1 @@
-"# nvim" 
+This Neovim configuration is optimized for .NET development, leveraging Roslyn LSP (csharp-ls) for C# language support, along with Mason, Mason-LSPConfig, and Blink.CMP for enhanced completion and LSP features.
