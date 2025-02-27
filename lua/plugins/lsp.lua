@@ -10,7 +10,12 @@ return {
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "csharp-language-server" }, -- Auto-install the LSP
+				ensure_installed = {
+					"csharp-language-server", -- C# LSP
+					"tsserver", -- TypeScript & JavaScript LSP
+					"eslint", -- ESLint for JS/TS
+					"biome", -- JS/TS formatter & linter
+				},
 			})
 		end,
 	},
@@ -27,6 +32,14 @@ return {
 
 			local servers = {
 				csharp_ls = {},
+				tsserver = { -- TypeScript & JavaScript LSP
+					capabilities = cmp_capabilities,
+					init_options = {
+						hostInfo = "neovim",
+					},
+				},
+				eslint = {}, -- Linter for JS/TS
+				biome = {}, -- Linter & formatter for JS/TS
 			}
 
 			for server, config in pairs(servers) do
