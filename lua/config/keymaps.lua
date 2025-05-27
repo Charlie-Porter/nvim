@@ -10,11 +10,16 @@ keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 -- Prevent "x" from yanking into register
 keymap.set("n", "x", '"_x', opts)
 
+-- key to jump forward
+vim.keymap.set("n", "gk", "<C-o>", opts) -- jump back
+vim.keymap.set("n", "gj", "<C-i>", opts) -- jump forward
+
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Save file and quit
 keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
+keymap.set("n", "<C-q>", ":q<Return>", opts)
 
 -- File explorer with NvimTree
 keymap.set("n", "<Leader>f", ":NvimTreeFindFile<Return>", opts)

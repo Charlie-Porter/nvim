@@ -108,7 +108,7 @@ return {
 					},
 				},
 				log = {
-					enable = true,
+					enable = false,
 					truncate = true,
 					types = {
 						diagnostics = true,
@@ -119,9 +119,9 @@ return {
 				},
 			})
 
-			if vim.fn.argc(-1) == 0 then
-				vim.cmd("NvimTreeFocus")
-			end
+			--if vim.fn.argc(-1) == 0 then
+			--		vim.cmd("NvimTreeFocus")
+			--	end
 		end,
 	},
 }

@@ -1,9 +1,19 @@
 return {
 	"saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
-	dependencies = "rafamadriz/friendly-snippets",
-
-	-- use a release tag to download pre-built binaries
+	dependencies = {
+		-- omitted other dependencies for clarity
+		{
+			"L3MON4D3/LuaSnip",
+			version = "v2.*",
+			build = "make install_jsregexp",
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load({
+					paths = vim.fn.stdpath("config") .. "/snippets",
+				})
+			end,
+		},
+	}, -- use a release tag to download pre-built binaries
 	version = "*",
 	-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 	-- build = 'cargo build --release',
@@ -18,6 +28,9 @@ return {
 		-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 		-- See the full "keymap" documentation for information on defining your own keymap.
 		keymap = { preset = "default" },
+		snippets = {
+			preset = "luasnip",
+		},
 
 		appearance = {
 			-- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -33,6 +46,9 @@ return {
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
+		},
+		fuzzy = {
+			implementation = "lua", -- <<< force pure-Lua matcher (no DLL)
 		},
 	},
 	opts_extend = { "sources.default" },

@@ -11,8 +11,8 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"csharp-language-server", -- C# LSP
-					"tsserver", -- TypeScript & JavaScript LSP
+					"csharp_ls", -- C# LSP
+					"ts_ls", -- TypeScript & JavaScript LSP
 					"eslint", -- ESLint for JS/TS
 					"biome", -- JS/TS formatter & linter
 				},
@@ -25,6 +25,8 @@ return {
 			"saghen/blink.cmp", -- Completion support
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			{ "L3MON4D3/LuaSnip", version = "v2.*" },
+			"rafamadriz/friendly-snippets",
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
@@ -32,7 +34,7 @@ return {
 
 			local servers = {
 				csharp_ls = {},
-				tsserver = { -- TypeScript & JavaScript LSP
+				ts_ls = { -- TypeScript & JavaScript LSP
 					capabilities = cmp_capabilities,
 					init_options = {
 						hostInfo = "neovim",

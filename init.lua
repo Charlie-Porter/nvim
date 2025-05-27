@@ -49,7 +49,7 @@ require("rzls").setup({
 	settings = {
 		razor = {
 			trace = {
-				level = "Verbose", -- Enables verbose logging for troubleshooting
+				level = "Error", -- Enables verbose logging for troubleshooting
 			},
 			format = {
 				enable = true, -- Enables automatic Razor file formatting
@@ -60,6 +60,5 @@ require("rzls").setup({
 		},
 	},
 })
-
 -- Enable debugging for LSP logs
-vim.lsp.set_log_level("debug") -- Useful for troubleshooting LSP-related issues
+vim.lsp.set_log_level("error") -- Useful for troubleshooting LSP-related issues

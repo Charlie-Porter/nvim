@@ -1,0 +1,12 @@
+{
+  "ConsoleWriteLine": {
+    "prefix": "cw",
+    "body": ["Console.WriteLine(${1:\"Hello, World!\"});"],
+    "description": "Shortcut for Console.WriteLine"
+  },
+  "MainMethod": {
+    "prefix": "main",
+    "body": ["static void Main(string[] args)", "{", "    $0", "}"],
+    "description": "Main method stub"
+  }
+}
