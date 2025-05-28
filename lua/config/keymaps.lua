@@ -11,8 +11,8 @@ keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "x", '"_x', opts)
 keymap.set("n", "d", '"_d', opts)
 
-vim.keymap.set("n", "gk", "<C-o>", opts) -- jump back                                            ▐
-vim.keymap.set("n", "gj", "<C-i>", opts) -- jump forward
+keymap.set("n", "gk", "<C-o>", opts) -- jump back                                            ▐
+keymap.set("n", "gj", "<C-i>", opts) -- jump forward
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G", opts)
@@ -37,6 +37,8 @@ keymap.set("n", "sv", ":vsplit<Return>", opts)
 keymap.set("n", "<C-d>", vim.diagnostic.goto_next, opts)
 keymap.set("n", "<A-r>", builtin.lsp_references, { desc = "Find References (Alt+r)" })
 keymap.set("n", "<A-i>", builtin.lsp_implementations, { desc = "Go to Implementation (Alt+l)" })
+keymap.set("n", "<A-d>", builtin.lsp_definitions, { desc = "Go to definitions (Alt+d)" })
+keymap.set("n", "<A-D>", builtin.lsp_type_definitions, { desc = "Go to definitions (Alt+D)" })
 
 -- Moving between splits
 keymap.set("n", "<C-h>", smart_splits.move_cursor_left, opts)
