@@ -9,13 +9,15 @@ return {
 			"rafamadriz/friendly-snippets",
 			config = function()
 				local ls = require("luasnip")
-
 				-- Load VSCode-style snippets
 				require("luasnip.loaders.from_vscode").lazy_load({
 					paths = { vim.fn.stdpath("config") .. "/snippets" },
 				})
 
 				ls.filetype_extend("cs", { "csharp" })
+				ls.filetype_extend("jsx", { "react", "javascript" })
+				ls.filetype_extend("javascriptreact", { "javascript", "react" })
+				ls.filetype_extend("typescriptreact", { "javascript", "react" })
 			end,
 		},
 	},

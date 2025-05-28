@@ -1,6 +1,10 @@
 -- Load Lazy.nvim plugin manager configuration
 require("config.lazy") -- This file likely contains the Lazy.nvim setup and plugin configuration
-
+vim.filetype.add({
+	extension = {
+		js = "javascriptreact",
+	},
+})
 -- Create an LSP (Language Server Protocol) client capabilities object
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 

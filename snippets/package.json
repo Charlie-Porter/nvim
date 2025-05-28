@@ -7,8 +7,12 @@
         "path": "./csharp.json"
       },
       {
-        "language": "all",
-        "path": "./all.json"
+        "language": "javascript",
+        "path": "./javascript.json"
+      },
+      {
+        "language": "react",
+        "path": "./react.json"
       }
     ]
   }
