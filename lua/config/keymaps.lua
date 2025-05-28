@@ -9,9 +9,9 @@ keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- Prevent "x" from yanking into register
 keymap.set("n", "x", '"_x', opts)
+keymap.set("n", "d", '"_d', opts)
 
--- key to jump forward
-vim.keymap.set("n", "gk", "<C-o>", opts) -- jump back
+vim.keymap.set("n", "gk", "<C-o>", opts) -- jump back                                            ▐
 vim.keymap.set("n", "gj", "<C-i>", opts) -- jump forward
 
 -- Select all
@@ -33,39 +33,16 @@ keymap.set("n", "<S-Tab>", ":tabprev<Return>", opts)
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
 
--- Move between windows
-keymap.set("n", "sh", "<C-w>h", opts)
-keymap.set("n", "sk", "<C-w>k", opts)
-keymap.set("n", "sj", "<C-w>j", opts)
-keymap.set("n", "sl", "<C-w>l", opts)
-
--- Resize window
-keymap.set("n", "<C-S-h>", "<C-w><", opts)
-keymap.set("n", "<C-S-l>", "<C-w>>", opts)
-keymap.set("n", "<C-S-k>", "<C-w>+", opts)
-keymap.set("n", "<C-S-j>", "<C-w>-", opts)
-
 -- Diagnostics (Changed <C-j> to <C-d> to avoid conflict)
 keymap.set("n", "<C-d>", vim.diagnostic.goto_next, opts)
-
--- Smart Splits (Optimized)
-keymap.set("n", "<A-h>", smart_splits.resize_left, opts)
-keymap.set("n", "<A-j>", smart_splits.resize_down, opts)
-keymap.set("n", "<A-k>", smart_splits.resize_up, opts)
-keymap.set("n", "<A-l>", smart_splits.resize_right, opts)
+keymap.set("n", "<A-r>", builtin.lsp_references, { desc = "Find References (Alt+r)" })
+keymap.set("n", "<A-i>", builtin.lsp_implementations, { desc = "Go to Implementation (Alt+l)" })
 
 -- Moving between splits
 keymap.set("n", "<C-h>", smart_splits.move_cursor_left, opts)
 keymap.set("n", "<C-j>", smart_splits.move_cursor_down, opts) -- Kept <C-j> for movement
 keymap.set("n", "<C-k>", smart_splits.move_cursor_up, opts)
 keymap.set("n", "<C-l>", smart_splits.move_cursor_right, opts)
-keymap.set("n", "<C-\\>", smart_splits.move_cursor_previous, opts)
-
--- Swapping buffers between windows
-keymap.set("n", "<Leader><Leader>h", smart_splits.swap_buf_left, opts)
-keymap.set("n", "<Leader><Leader>j", smart_splits.swap_buf_down, opts)
-keymap.set("n", "<Leader><Leader>k", smart_splits.swap_buf_up, opts)
-keymap.set("n", "<Leader><Leader>l", smart_splits.swap_buf_right, opts)
 
 -- Telescope General Pickers
 keymap.set("n", "<Leader>ff", builtin.find_files, { desc = "Telescope find files" })
@@ -88,8 +65,26 @@ keymap.set("n", "<Leader>gsh", builtin.git_stash, { desc = "Telescope Git Stash"
 
 -- **Run .NET Project**
 keymap.set("n", "<C-p>", function()
-	dotnet.run()
-end, { desc = "Run .NET Project" })
+	-- Kill any running dotnet process first (Windows-specific)
+	vim.fn.jobstart({ "cmd", "/C", "taskkill /f /im dotnet.exe" }, {
+		stdout_buffered = true,
+		stderr_buffered = true,
+		on_stdout = function(_, data)
+			if data then
+				print(table.concat(data, "\n"))
+			end
+		end,
+		on_stderr = function(_, data)
+			if data then
+				print("Error: " .. table.concat(data, "\n"))
+			end
+		end,
+		on_exit = function()
+			-- After killing, run the .NET project
+			dotnet.run()
+		end,
+	})
+end, { desc = "Kill dotnet and Run .NET Project" })
 
 -- **Secrets Command**
 vim.api.nvim_create_user_command("Secrets", function()
