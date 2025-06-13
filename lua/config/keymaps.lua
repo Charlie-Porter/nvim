@@ -40,6 +40,22 @@ keymap.set("n", "<A-i>", builtin.lsp_implementations, { desc = "Go to Implementa
 keymap.set("n", "<A-d>", builtin.lsp_definitions, { desc = "Go to definitions (Alt+d)" })
 keymap.set("n", "<A-D>", builtin.lsp_type_definitions, { desc = "Go to definitions (Alt+D)" })
 
+keymap.set("n", "<F5>", function()
+	require("dap").continue()
+end)
+keymap.set("n", "<F10>", function()
+	require("dap").step_over()
+end)
+keymap.set("n", "<F11>", function()
+	require("dap").step_into()
+end)
+keymap.set("n", "<F12>", function()
+	require("dap").step_out()
+end)
+keymap.set("n", "<Leader>B", function()
+	require("dap").toggle_breakpoint()
+end)
+
 -- Moving between splits
 keymap.set("n", "<C-h>", smart_splits.move_cursor_left, opts)
 keymap.set("n", "<C-j>", smart_splits.move_cursor_down, opts) -- Kept <C-j> for movement
