@@ -81,7 +81,20 @@ keymap.set("n", "<Leader>gc", builtin.git_commits, { desc = "Telescope Git Commi
 keymap.set("n", "<Leader>gs", builtin.git_status, { desc = "Telescope Git Status" })
 keymap.set("n", "<Leader>gsh", builtin.git_stash, { desc = "Telescope Git Stash" })
 
--- **Run .NET Project**
+keymap.set("n", "<leader>fp", function()
+	require("telescope.builtin").live_grep({
+		default_text = vim.fn.getreg('"'), -- or '"', '*', etc.
+	})
+end, { desc = "Live Grep from clipboard" })
+
+keymap.set("n", "<leader>ff", function()
+	require("telescope.builtin").find_files({
+		default_text = vim.fn.getreg('"'),
+		search_dirs = { vim.fn.getcwd() }, -- Root dir
+	})
+end, { desc = "Find File from clipboard in Root Dir" })
+
+-- -- **Run .NET Project**
 keymap.set("n", "<C-p>", function()
 	-- Kill any running dotnet process first (Windows-specific)
 	vim.fn.jobstart({ "cmd", "/C", "taskkill /f /im dotnet.exe" }, {
