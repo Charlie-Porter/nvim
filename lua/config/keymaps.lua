@@ -5,20 +5,19 @@ local builtin = require("telescope.builtin") -- Optimized require
 local dotnet = require("easy-dotnet") -- Optimized require for easy-dotnet.nvim
 
 -- Exit insert mode with "jk"
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- Prevent "x" from yanking into register
 keymap.set("n", "x", '"_x', opts)
-keymap.set("n", "d", '"_d', opts)
 
-keymap.set("n", "gk", "<C-o>", opts) -- jump back                                            ▐
-keymap.set("n", "gj", "<C-i>", opts) -- jump forward
+vim.keymap.set("n", "<leader>o", "<cmd>Portal jumplist backward<cr>")
+vim.keymap.set("n", "<leader>i", "<cmd>Portal jumplist forward<cr>")
 
 -- Select all
-keymap.set("n", "<C-a>", "gg<S-v>G", opts)
+-- keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 
 -- Save file and quit
-keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
+-- keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
 keymap.set("n", "<C-q>", ":q<Return>", opts)
 
 -- File explorer with NvimTree
@@ -38,7 +37,6 @@ keymap.set("n", "<C-d>", vim.diagnostic.goto_next, opts)
 keymap.set("n", "<A-r>", builtin.lsp_references, { desc = "Find References (Alt+r)" })
 keymap.set("n", "<A-i>", builtin.lsp_implementations, { desc = "Go to Implementation (Alt+l)" })
 keymap.set("n", "<A-d>", builtin.lsp_definitions, { desc = "Go to definitions (Alt+d)" })
-keymap.set("n", "<A-D>", builtin.lsp_type_definitions, { desc = "Go to definitions (Alt+D)" })
 
 keymap.set("n", "<F5>", function()
 	require("dap").continue()
