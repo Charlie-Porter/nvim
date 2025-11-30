@@ -1,12 +1,12 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		config = function()
 			require("mason").setup()
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			require("mason-lspconfig").setup({
@@ -23,8 +23,8 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"saghen/blink.cmp", -- Completion support
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
 			{ "L3MON4D3/LuaSnip", version = "v2.*" },
 			"rafamadriz/friendly-snippets",
 		},

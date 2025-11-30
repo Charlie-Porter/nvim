@@ -10,14 +10,13 @@ local dotnet = require("easy-dotnet") -- Optimized require for easy-dotnet.nvim
 -- Prevent "x" from yanking into register
 keymap.set("n", "x", '"_x', opts)
 
-vim.keymap.set("n", "<leader>o", "<cmd>Portal jumplist backward<cr>")
-vim.keymap.set("n", "<leader>i", "<cmd>Portal jumplist forward<cr>")
+keymap.set("n", "<leader>o", "<cmd>Portal jumplist backward<cr>")
+keymap.set("n", "<leader>i", "<cmd>Portal jumplist forward<cr>")
 
--- Select all
--- keymap.set("n", "<C-a>", "gg<S-v>G", opts)
+-- EasyAlign
+keymap.set("x", "ga", "<Plug>(EasyAlign)", { desc = "EasyAlign (visual)" })
 
--- Save file and quit
--- keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
+-- Quit
 keymap.set("n", "<C-q>", ":q<Return>", opts)
 
 -- File explorer with NvimTree

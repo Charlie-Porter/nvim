@@ -28,7 +28,10 @@ return {
 			},
 		},
 	},
-
+	{
+		"junegunn/vim-easy-align",
+		event = "VeryLazy",
+	},
 	-- filename
 	{
 		"b0o/incline.nvim",
