@@ -7,6 +7,9 @@ local dotnet = require("easy-dotnet") -- Optimized require for easy-dotnet.nvim
 -- Exit insert mode with "jk"
 -- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
+-- Easy-dotnest keybindings
+keymap.set("n", "<leader>es", ":Dotnet lsp start<cr>", { desc = "Easy-dotnest start Lsp" })
+
 -- Prevent "x" from yanking into register
 keymap.set("n", "x", '"_x', opts)
 
@@ -129,6 +132,7 @@ keymap.set(
 keymap.set({ "n", "v" }, "<Leader>cgc", ":ChatGPT<CR>", opts)
 keymap.set({ "n", "v" }, "<Leader>cge", ":ChatGPTEditWithInstruction<CR>", opts)
 keymap.set({ "n", "v" }, "<Leader>cgg", ":ChatGPTRun grammar_correction<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgo", ":ChatGPTRun optimize_code<CR>", opts)
 keymap.set({ "n", "v" }, "<Leader>cgt", ":ChatGPTRun translate<CR>", opts)
 keymap.set({ "n", "v" }, "<Leader>cgk", ":ChatGPTRun keywords<CR>", opts)
 keymap.set({ "n", "v" }, "<Leader>cgd", ":ChatGPTRun docstring<CR>", opts)
