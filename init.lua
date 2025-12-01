@@ -57,3 +57,7 @@ require("rzls").setup({
 })
 -- Enable debugging for LSP logs
 vim.lsp.set_log_level("error") -- Useful for troubleshooting LSP-related issues
+
+if not vim.env.OPENAI_API_HOST or vim.env.OPENAI_API_HOST == "" then
+	vim.env.OPENAI_API_HOST = "api.openai.com"
+end

@@ -118,3 +118,92 @@ end, { desc = "Kill dotnet and Run .NET Project" })
 vim.api.nvim_create_user_command("Secrets", function()
 	dotnet.secrets()
 end, {})
+
+-- ChatGPT
+keymap.set(
+	{ "n", "v" },
+	"<Leader>cg",
+	":ChatGPT<CR>",
+	{ noremap = true, silent = true, desc = "ChatGPT (optional input)" }
+)
+keymap.set({ "n", "v" }, "<Leader>cgc", ":ChatGPT<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cge", ":ChatGPTEditWithInstruction<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgg", ":ChatGPTRun grammar_correction<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgt", ":ChatGPTRun translate<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgk", ":ChatGPTRun keywords<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgd", ":ChatGPTRun docstring<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cga", ":ChatGPTRun add_tests<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgs", ":ChatGPTRun summarize<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgf", ":ChatGPTRun fix_bugs<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgx", ":ChatGPTRun explain_code<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgr", ":ChatGPTRun roxygen_edit<CR>", opts)
+keymap.set({ "n", "v" }, "<Leader>cgl", ":ChatGPTRun code_readability_analysis<CR>", opts)
+
+-- Copilot Chat Keybindings
+keymap.set(
+	"n",
+	"<Leader>cc",
+	":CopilotChat<CR>",
+	{ noremap = true, silent = true, desc = "CopilotChat (optional input)" }
+)
+keymap.set("n", "<Leader>ccc", ":CopilotChat<CR>", { noremap = true, silent = true, desc = "CopilotChat" })
+keymap.set(
+	"n",
+	"<Leader>cco",
+	":CopilotChatOpen<CR>",
+	{ noremap = true, silent = true, desc = "CopilotChat Open window" }
+)
+keymap.set(
+	"n",
+	"<Leader>ccq",
+	":CopilotChatClose<CR>",
+	{ noremap = true, silent = true, desc = "CopilotChat Close window" }
+)
+keymap.set(
+	"n",
+	"<Leader>cct",
+	":CopilotChatToggle<CR>",
+	{ noremap = true, silent = true, desc = "CopilotChat Toggle window" }
+)
+keymap.set(
+	"n",
+	"<Leader>ccs",
+	":CopilotChatStop<CR>",
+	{ noremap = true, silent = true, desc = "CopilotChat Stop output" }
+)
+keymap.set(
+	"n",
+	"<Leader>ccr",
+	":CopilotChatReset<CR>",
+	{ noremap = true, silent = true, desc = "CopilotChat Reset window" }
+)
+keymap.set(
+	"n",
+	"<Leader>ccS",
+	":CopilotChatSave ",
+	{ noremap = true, silent = true, desc = "CopilotChat Save chat history" }
+)
+keymap.set(
+	"n",
+	"<Leader>ccl",
+	":CopilotChatLoad ",
+	{ noremap = true, silent = true, desc = "CopilotChat Load chat history" }
+)
+keymap.set(
+	"n",
+	"<Leader>ccp",
+	":CopilotChatPrompts<CR>",
+	{ noremap = true, silent = true, desc = "CopilotChat View/select prompts" }
+)
+keymap.set(
+	"n",
+	"<Leader>ccm",
+	":CopilotChatModels<CR>",
+	{ noremap = true, silent = true, desc = "CopilotChat View/select models" }
+)
+keymap.set("n", "<Leader>ccn", function()
+	local name = vim.fn.input("Prompt name: ")
+	if name ~= nil and name ~= "" then
+		vim.cmd("CopilotChat" .. name)
+	end
+end, { noremap = true, silent = true, desc = "CopilotChat use specific prompt template" })
